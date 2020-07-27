@@ -54,6 +54,20 @@ class Solution:
             adjust_heap(0, length - i)
         return res
 
+    # 分发饼干 贪心算法
+    def findContentChildren(self, children: List[int], cookies: List[int]) -> int:
+        sorted(children)
+        sorted(cookies)
+        children_index = 0
+        cookies_index = 0
+        while children_index < len(children) and cookies_index < len(cookies):
+            if cookies[cookies_index] >= children[children_index]:
+                cookies_index += 1
+                children_index += 1
+            else:
+                cookies_index += 1
+        return children_index
+
 
 solution = Solution()
 print(List.__module__)
@@ -65,6 +79,8 @@ print('{}: {}'.format('two_sum', two_sum))
 kth_largest = solution.findKthLargest([2, 1, 3, 9, 8], 5)
 print('{}: {}'.format('kth_largest', kth_largest))
 kth_largest = solution.myFindKthLargest([2, 1, 3, 9, 8], 5)
-
+# 分发饼干 贪心算法
+find_content_children = solution.findContentChildren([1, 2], [1, 2, 3])
+print('find_content_children: {}'.format(find_content_children))
 print('{}: {}'.format('kth_largest', kth_largest))
 print('hello world')

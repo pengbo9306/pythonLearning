@@ -2,6 +2,7 @@
 import heapq
 from typing import List
 
+
 # 测试git可用
 class Solution:
     # 双指针
@@ -68,6 +69,19 @@ class Solution:
                 cookies_index += 1
         return children_index
 
+    # 二分查找求平方根
+    def binary_search(self, x: int) -> int:
+        left, right = 0, x + 1
+        while left < right:
+            mid = left + (right - left) // 2
+            if mid * mid == x:
+                return mid
+            if mid * mid < x:
+                left = mid + 1
+            else:
+                right = mid
+        return left - 1
+
 
 solution = Solution()
 print(List.__module__)
@@ -81,6 +95,9 @@ print('{}: {}'.format('kth_largest', kth_largest))
 kth_largest = solution.myFindKthLargest([2, 1, 3, 9, 8], 5)
 # 分发饼干 贪心算法
 find_content_children = solution.findContentChildren([1, 2], [1, 2, 3])
+
+# 二分查找求平方根
+print('平方根是：{}'.format(solution.binary_search(8)))
 print('find_content_children: {}'.format(find_content_children))
 print('{}: {}'.format('kth_largest', kth_largest))
 print('hello world')

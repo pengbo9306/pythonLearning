@@ -71,6 +71,7 @@ class Solution:
 
     # 二分查找求平方根
     def binary_search(self, x: int) -> int:
+        # 模版[left,right)
         left, right = 0, x + 1
         while left < right:
             mid = left + (right - left) // 2
@@ -80,6 +81,7 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid
+        # 模版是返回left，这里因为不是等值查询
         return left - 1
 
 

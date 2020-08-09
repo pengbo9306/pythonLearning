@@ -84,6 +84,25 @@ class Solution:
         # 模版是返回left，这里因为不是等值查询
         return left - 1
 
+    # 为运算表达式设计优先级
+    def diffWaysToCompute(self, input: str) -> List[int]:
+        if input.isdigit():
+            return [int(input)]
+        res = []
+        for i, char in enumerate(input):
+            if char in ['+', '-', '*']:
+                left = self.diffWaysToCompute(input[:i])
+                right = self.diffWaysToCompute(input[i + 1:])
+                for l in left:
+                    for r in right:
+                        if char == '+':
+                            res.append(l + r)
+                        elif char == '-':
+                            res.append(l - r)
+                        else:
+                            res.append(l * r)
+        return res
+
 
 solution = Solution()
 print(List.__module__)
@@ -103,3 +122,6 @@ print('平方根是：{}'.format(solution.binary_search(8)))
 print('find_content_children: {}'.format(find_content_children))
 print('{}: {}'.format('kth_largest', kth_largest))
 print('hello world')
+
+# 为运算表达式设计优先级
+print('所有的运算结果是：{}'.format(solution.diffWaysToCompute('2-1-1')))

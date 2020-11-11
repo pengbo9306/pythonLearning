@@ -36,6 +36,32 @@ class Solution:
             l2.next = self.mergeTwoLists(l1, l2.next)
             return l2
 
+    # 删除升序链表中重复的元素
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        node = head
+        while node and node.next:
+            if node.val == node.next.val:
+                node.next = node.next.next
+            else:
+                node = node.next
+        return head
+
+    # 删除倒数第n个元素
+    # 快慢指针
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        fast, slow = dummy, dummy
+        for _ in range(n):
+            fast = fast.next
+
+        while fast.next and slow.next:
+            fast = fast.next
+            slow = slow.next
+
+        slow.next = not slow.next
+        return dummy.next
+
 
 solution = Solution()
 head = ListNode(4)

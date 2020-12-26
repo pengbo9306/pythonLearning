@@ -246,7 +246,7 @@ classifier_model = build_classifier_model()
 bert_raw_result = classifier_model(tf.constant(text_test))
 print(tf.sigmoid(bert_raw_result))
 
-tf.keras.utils.plot_model(classifier_model)
+# tf.keras.utils.plot_model(classifier_model)
 
 # 损失函数
 loss = tf.keras.losses.BinaryCrossentropy(from_logits=True)
@@ -273,6 +273,7 @@ print(f'Training model with {tfhub_handle_encoder}')
 history = classifier_model.fit(x=train_ds,
                                validation_data=val_ds,
                                epochs=epochs)
+print(history)
 
 # 评估模型
 loss, accuracy = classifier_model.evaluate(test_ds)
